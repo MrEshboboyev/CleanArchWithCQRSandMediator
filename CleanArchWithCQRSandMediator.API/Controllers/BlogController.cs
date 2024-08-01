@@ -1,4 +1,5 @@
 ﻿using CleanArchWithCQRSandMediator.Application.Blogs.Commands.CreateBlog;
+using CleanArchWithCQRSandMediator.Application.Blogs.Commands.UpdateBlog;
 using CleanArchWithCQRSandMediator.Application.Blogs.Queries.GetBlogById;
 using CleanArchWithCQRSandMediator.Application.Blogs.Queries.GetBlogs;
 using Microsoft.AspNetCore.Http;
@@ -36,6 +37,19 @@ namespace CleanArchWithCQRSandMediator.API.Controllers
             var createdBlog = await Mediator.Send(command);
 
             return CreatedAtAction(nameof(GetByIdAsync), new { id = createdBlog.Id }, createdBlog);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateAsync(int id, UpdateBlogCommand command)
+        {
+            if (id != command.Id)
+            {
+                return BadRequest("id and Blog.Id must be match!");
+            }
+
+            await Mediator.Send(command);
+
+            return NoContent();
         }
 
     }
