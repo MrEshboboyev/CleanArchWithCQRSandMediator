@@ -1,4 +1,5 @@
 ﻿using CleanArchWithCQRSandMediator.Application.Blogs.Commands.CreateBlog;
+using CleanArchWithCQRSandMediator.Application.Blogs.Commands.DeleteBlog;
 using CleanArchWithCQRSandMediator.Application.Blogs.Commands.UpdateBlog;
 using CleanArchWithCQRSandMediator.Application.Blogs.Queries.GetBlogById;
 using CleanArchWithCQRSandMediator.Application.Blogs.Queries.GetBlogs;
@@ -39,7 +40,7 @@ namespace CleanArchWithCQRSandMediator.API.Controllers
             return CreatedAtAction(nameof(GetByIdAsync), new { id = createdBlog.Id }, createdBlog);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateAsync(int id, UpdateBlogCommand command)
         {
             if (id != command.Id)
@@ -52,5 +53,18 @@ namespace CleanArchWithCQRSandMediator.API.Controllers
             return NoContent();
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAsync(int id)
+        {
+            int result = await Mediator.Send(new DeleteBlogCommand { Id = id });
+
+            // deleted blog is not found
+            if (result == 0)
+            {
+                return BadRequest();
+            }
+
+            return NoContent();
+        }
     }
 }
