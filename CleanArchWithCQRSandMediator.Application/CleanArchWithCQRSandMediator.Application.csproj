@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Blogs\Commands\CreateBlog\" />
+    <Folder Include="Blogs\Commands\DeleteBlog\" />
+    <Folder Include="Blogs\Commands\UpdateBlog\" />
+  </ItemGroup>
+
+</Project>
