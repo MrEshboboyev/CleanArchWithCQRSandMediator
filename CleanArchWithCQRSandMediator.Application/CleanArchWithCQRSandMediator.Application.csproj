@@ -13,7 +13,6 @@
     <Folder Include="Common\Behaviours\" />
     <Folder Include="Common\Exceptions\" />
     <Folder Include="Common\Mappings\" />
-    <Folder Include="Blogs\Queries\GetBlogs\" />
     <Folder Include="Blogs\Queries\GetBlogById\" />
   </ItemGroup>
 
